@@ -1,0 +1,2 @@
+[tower_node]
+ansible_tower ansible_host=localhost
