@@ -10,4 +10,4 @@
       
     - name: show results
       debug:
-        var: scan_results 
+        msg: "{{ scan_results.stdout_lines|list }}" 
