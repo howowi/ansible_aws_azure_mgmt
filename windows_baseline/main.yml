@@ -1,0 +1,12 @@
+---
+- name: Run Chef Inspec on Windows
+  hosts: windows_target
+  
+  tasks:
+    - name: execute Inspec command
+      win_shell: inspec exec https://github.com/dev-sec/windows-baseline
+      register: scan_results
+      
+    - name: show results
+      debug:
+        var: scan_results 
