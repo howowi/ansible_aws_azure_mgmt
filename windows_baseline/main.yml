@@ -5,6 +5,7 @@
   tasks:
     - name: execute Inspec command
       win_shell: inspec exec https://github.com/dev-sec/windows-baseline
+      ignore_errors: yes
       register: scan_results
       
     - name: show results
