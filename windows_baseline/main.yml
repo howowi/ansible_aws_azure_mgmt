@@ -8,10 +8,10 @@
       ignore_errors: yes
       register: scan_results
       
-#    - name: show results
-#      debug:
-#        msg: "{{ scan_results.stdout_lines|list }}" 
-
     - name: show results
       debug:
-        var: scan_results 
+        msg: "{{ scan_results.stdout_lines|list }}" 
+
+#   - name: show results
+#      debug:
+#        var: scan_results 
