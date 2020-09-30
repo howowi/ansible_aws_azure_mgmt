@@ -4,11 +4,11 @@
   
   tasks:
     - name: execute Inspec command
-      win_shell: $(inspec exec https://github.com/dev-sec/windows-baseline) >> C:\Users\weihow.owi\windows_scan.txt
+      raw: $(inspec exec https://github.com/dev-sec/windows-baseline) >> C:\Users\weihow.owi\windows_scan.txt
       ignore_errors: yes
       
     - name: read the file
-      win_shell: cat .\windows.txt
+      raw: cat .\windows.txt
       ignore_errors: yes
       register: scan_results
       
