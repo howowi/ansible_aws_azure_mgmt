@@ -1,6 +1,6 @@
 ---
 - name: Run Chef Inspec on Windows
-  hosts: windows_target
+  hosts: windows
   
   tasks:
     - name: execute Inspec command
