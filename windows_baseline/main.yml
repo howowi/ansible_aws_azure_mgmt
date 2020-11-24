@@ -8,7 +8,7 @@
       ignore_errors: yes
       
     - name: read the file
-      raw: cat .\windows.txt
+      raw: cat C:\Users\azureuser\windows.txt
       ignore_errors: yes
       register: scan_results
       
