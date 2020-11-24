@@ -7,11 +7,18 @@
       raw: $(inspec exec https://github.com/dev-sec/windows-baseline) >> C:\Users\azureuser\windows_scan.txt
       ignore_errors: yes
       
+    - name: remove ANSI Char
+      raw: cat C:\Users\azureuser\windows_scan.txt | ForEach-Object { $_ -replace '\x1B\[[0-9;]*m','' } | Out-File -FilePath .\windows_scan_output.txt
+      ignore_errors: yes
+      
     - name: read the file
-      raw: cat C:\Users\azureuser\windows_scan.txt
+      raw: cat C:\Users\azureuser\windows_scan_output.txt
       ignore_errors: yes
       register: scan_results
       
     - name: show results
       debug:
-        msg: "{{ scan_results.stdout_lines|list }}" 
+        msg: "{{ scan_results.stdout_lines|list }}"
+        
+    - name: clean up files
+      raw: rm .\windows_scan.txt; rm .\windows_scan_output.txt
