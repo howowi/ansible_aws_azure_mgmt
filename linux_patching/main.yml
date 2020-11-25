@@ -5,13 +5,13 @@
   tasks:
     - name: List available updates (all)
       yum:
-        list: updates
+        list: available
       register: update_list
       when: security_patch == "No"
       
     - name: List available updates (security only)
       yum:
-        list: updates
+        list: available
         security: yes
       register: update_list
       when: security_patch == "Yes"
