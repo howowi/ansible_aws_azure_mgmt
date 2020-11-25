@@ -6,11 +6,13 @@
     - name: List available updates (all)
       shell: yum check-updates
       register: update_list
+      failed_when: update_list.rc != 100
       when: security_patch == "No"
       
     - name: List available updates (security only)
       shell: yum check-updates --security
       register: update_list
+      failed_when: update_list.rc != 100
       when: security_patch == "Yes"
       
     - name: show list
