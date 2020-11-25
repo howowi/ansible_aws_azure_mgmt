@@ -18,4 +18,4 @@
       
     - name: show list
       debug:
-        var: update_list
+        msg: "{{ update_list|list }}"
