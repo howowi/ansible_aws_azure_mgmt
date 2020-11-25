@@ -1,3 +1,21 @@
 ---
 - name: RHEL Patching
   hosts: linux
+
+  tasks:
+    - name: List available updates (all)
+      yum:
+        list: updates
+      register: update_list
+      when: {{ security_patch }} is no
+      
+    - name: List available updates (security only)
+      yum:
+        list: updates
+        security: yes
+      register: update_list
+      when: {{ security_patch }} is yes
+      
+    - name: show list
+      debug:
+        var: update_list
