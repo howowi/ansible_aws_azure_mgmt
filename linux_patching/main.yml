@@ -5,16 +5,22 @@
   tasks:
     - name: List available updates (all)
       shell: yum check-updates
-      register: update_list
+      register: update_list_all
       failed_when: update_list.rc != 100
       when: security_patch == "No"
       
     - name: List available updates (security only)
       shell: yum check-updates --security
-      register: update_list
+      register: update_list_sec
       failed_when: update_list.rc != 100
       when: security_patch == "Yes"
       
-    - name: show list
+    - name: show list for all updates
       debug:
-        msg: "{{ update_list }}"
+        msg: "{{ update_list_all.stdout_lines|list }}"
+      when: security_patch == "No"
+      
+    - name: show list for security updates
+      debug:
+        msg: "{{ update_list_sec.stdout_lines|list }}"
+      when: security_patch == "Yes"
