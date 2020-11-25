@@ -17,4 +17,4 @@
       
     - name: show list
       debug:
-        msg: "{{ update_list|list }}"
+        msg: "{{ update_list.stdout_lines|list }}"
