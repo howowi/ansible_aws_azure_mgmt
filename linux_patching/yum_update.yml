@@ -1,3 +1,19 @@
 ---
 - name: Update RHEL 7
-  hosts: 
+  hosts: linux
+
+  tasks:
+    - name: Apply Updates (all)
+      yum:
+        name: '*'
+        state: latest
+      #register: update_all_outcome
+      when: security_patch == "No"
+      
+    - name: Apply Updates (security only)
+      yum:
+        name: '*'
+        state: latest
+        security: yes
+      #register: update_sec_outcome
+      when: security_patch == "Yes"
