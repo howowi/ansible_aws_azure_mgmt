@@ -7,14 +7,14 @@
       yum:
         list: updates
       register: update_list
-      when: {{ security_patch }} is no
+      when: security_patch == "no"
       
     - name: List available updates (security only)
       yum:
         list: updates
         security: yes
       register: update_list
-      when: {{ security_patch }} is yes
+      when: security_patch == "yes"
       
     - name: show list
       debug:
